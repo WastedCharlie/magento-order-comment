@@ -12,6 +12,7 @@
  */
 class Magemaven_OrderComment_Model_Observer extends Varien_Object
 {
+    const EXCEPTION_COMMENT_LENGTH       = 1;
     /**
      * Current comment
      *
