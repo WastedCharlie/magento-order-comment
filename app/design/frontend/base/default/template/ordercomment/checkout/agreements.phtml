@@ -11,23 +11,64 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+$helper = Mage::helper('ordercomment');
+$element = $helper->getInputType();
+
+/* I'm leaving this here in case someone knows how to make this happen on the phtml level.
+ * 
+/* $inputClass = 'input-text validate-length '
+	.(($minLength = $helper->getMinimumCommentLength()) == 0 ?: " minimum-length-$minLength required-entry")
+	.(($maxLength = $helper->getMaximumCommentLength()) == 0 ?: " maximum-length-$maxLength ");
+ */
+/*
+ * The difficulty I've encountered is this:  The OnePageCheckout doesn't use standard Mage/Zend input validation.
+ * The controls are rounded up and processed by the OPC container, if it hasn't accounted for your control then 
+ * you're not going to get validated.  Since there's no client-side checking at all on the "Review" stage, I can't
+ * see an obvious way of getting these controls validated client-side without replacing the OPC javascript.
+ * 
+ * The exception is that there's no harm in putting a maxlength attribute if the comment is entered using a text input.
+ * 
+ * The scope of serverside tests for Review level are defined in Mage_Checkout_OnepageController->saveOrderAction() 
+ * and they only account for agreement checkboxes.  It might be possible to rewrite that class and extend the action
+ * to consider these controls, but it seems the complicated way of doing it. Instead, the actual tests this module's 
+ * length values take place in the observer of checkout_type_onepage_save_order.
+ * 
+ * */
+$label = $helper->__('Order Comments');
+$inputClass = 'input-text';
+?>
 <form action="" id="checkout-agreements" onsubmit="return false;">
-    <div class="buttons-set">
-        <ul class="form-list">
-            <li>
-                <fieldset>
-                    <ul>
-                        <li class="wide">
-                            <label for="ordercomment-comment"><?php echo Mage::helper('ordercomment')->__('Order Comment') ?></label>
-                            <div class="input-box">
-                                <textarea id="ordercomment-comment" class="input-text validation-passed" name="ordercomment[comment]" title="<?php echo $this->__('Order Comment') ?>" rows="5" cols="10"></textarea>
-                            </div>
-                        </li>
-                    </ul>
-                </fieldset>
-            </li>
-        </ul>
-    </div>
+	<ul class="form-list">
+		<li>
+			<fieldset>
+				<ul>
+					<li class="wide">
+						<h2><label for="ordercomment-comment"><?php echo $label; ?></label></h2>
+						<div class="input-box">
+							<?php if($element == 'textarea'){ ?>
+								<textarea 
+									id="ordercomment-comment" 
+									class="<?php echo $inputClass; ?>"
+									name="ordercomment[comment]" 
+									title="<?php echo $label; ?>" 
+									rows="5" 
+									cols="10"></textarea>
+							<?php } elseif($element=='input'){ ?>
+								<input 
+									type="text"
+									maxlength="<?php echo $helper->getMaximumCommentLength();?>"
+									id="ordercomment-comment" 
+									class="<?php echo $inputClass; ?>"
+									name="ordercomment[comment]" 
+									title="<?php echo $label; ?>" 
+								/>
+							<?php } ?>
+						</div>
+					</li>
+				</ul>
+			</fieldset>
+		</li>
+	</ul>
 
     <?php if ($this->getAgreements()): ?>
         <ol class="checkout-agreements">
