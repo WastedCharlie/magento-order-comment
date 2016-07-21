@@ -12,5 +12,15 @@
  */
 class Magemaven_OrderComment_Helper_Data extends Mage_Core_Helper_Abstract
 {
-
+	public function getInputType(){
+		return (Mage::getStoreConfig('ordercomment/order_comments_input/input_type', Mage::app()->getStore()) ? : 'textarea');
+	}
+	
+	public function getMinimumCommentLength(){
+		return Mage::getStoreConfig('ordercomment/order_comments_input/lower_character_limit', Mage::app()->getStore())*1;
+	}
+	
+	public function getMaximumCommentLength(){
+		return Mage::getStoreConfig('ordercomment/order_comments_input/upper_character_limit', Mage::app()->getStore())*1;
+	}
 }
