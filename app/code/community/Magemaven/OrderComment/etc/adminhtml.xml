@@ -1,0 +1,22 @@
+<config>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<ordercomment translate="title" module="ordercomment">
+										<title>MageMaven OrderComment</title>
+										<sort_order>999</sort_order>
+									</ordercomment>
+								</children>
+							</config>
+						</children>
+					</system>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config> 

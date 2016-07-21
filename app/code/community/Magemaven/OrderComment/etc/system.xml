@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config>
+	<sections>
+		<ordercomment translate="label" module="ordercomment">                    
+			<label>MageMaven Order Comment</label>
+			<tab>sales</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+				<order_comments_input translate="label">
+					<label>Input Settings</label>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<lower_character_limit translate="label comment">
+							<label>Minumum characters in comment</label>
+							<comment>0 or empty for no restriction.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</lower_character_limit>
+						<upper_character_limit translate="label comment">
+							<label>Maximum characters in comment</label>
+							<comment>0 or empty for no restriction.</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</upper_character_limit>
+						<input_type translate="label">
+							<label>Input Type</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<value>textarea</value>
+							<source_model>ordercomment/system_config_source_inputs</source_model>
+						</input_type>
+					</fields>
+				</order_comments_input>
+			</groups>
+		</ordercomment>
+	</sections>
+</config>
