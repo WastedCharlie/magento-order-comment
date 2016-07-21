@@ -60,7 +60,7 @@
 			<modules>
 				<Magemaven_OrderComment>
 					<files>
-						<default>ordercoments.csv</default>
+						<default>ordercomments.csv</default>
 					</files>
 				</Magemaven_OrderComment>
 			</modules>
