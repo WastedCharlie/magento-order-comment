@@ -1,0 +1,4 @@
+"Order Comment","Delivery Requests"
+"Order comment should be between %s and %s characters.","Order comment should be between %s and %s characters."
+"Order comment should be at least %s characters.","Order comment should be at least %s characters."
+"Order comment should be no longer than %s characters.","Order comment should be no longer than %s characters."
